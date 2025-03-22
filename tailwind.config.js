@@ -9,6 +9,8 @@ export default {
     "colors": {
       "white": "#FFFFFF",
       "black": "#000000",
+      "background": "hsl(var(--background))",
+      "foreground": "hsl(var(--foreground))",
       "primary": {
         "100": "#f2f2fd",
         "150": "#e0e1fa",
