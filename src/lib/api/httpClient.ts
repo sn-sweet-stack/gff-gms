@@ -18,6 +18,7 @@ export class FetchHttpClient implements HttpClient {
     this.baseURL = baseURL
     this.defaultHeaders = {
       'Content-Type': 'application/json',
+      'Accept': 'application/json',
     }
   }
 
@@ -52,7 +53,7 @@ export class FetchHttpClient implements HttpClient {
     if (contentType && contentType.includes('application/json')) {
       return await response.json()
     }
-    
+
     return await response.text() as unknown as T
   }
 
