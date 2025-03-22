@@ -1,18 +1,5 @@
 import type { HttpClient } from './httpClient'
-
-// Type for mock response data
-export interface MockResponse<T = any> {
-  data: T
-  status: number
-  delay?: number
-}
-
-// Type for mock data configuration
-export interface MockConfig {
-  [endpoint: string]: {
-    [method: string]: MockResponse
-  }
-}
+import type { MockConfig } from './types'
 
 export class MockHttpClient implements HttpClient {
   private mockData: MockConfig

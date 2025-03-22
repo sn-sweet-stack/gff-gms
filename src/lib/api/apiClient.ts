@@ -1,24 +1,8 @@
 import { FetchHttpClient } from './httpClient'
 import type { HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
-
-// Define types for API responses
-export interface User {
-  id: string
-  username: string
-  email: string
-  token?: string
-}
-
-export interface LoginRequest {
-  username: string
-  password: string
-}
-
-export interface LoginResponse {
-  user: User
-  token: string
-}
+import { mockData } from './mockdata'
+import type { User, LoginRequest, LoginResponse } from './types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -28,7 +12,7 @@ export class ApiClient {
 
     // Use mock client if in mock mode
     if (import.meta.env.VITE_USE_MOCK_API === 'true') {
-      this.httpClient = new MockHttpClient(baseURL, this.getMockData())
+      this.httpClient = new MockHttpClient(baseURL, mockData)
     } else {
       this.httpClient = new FetchHttpClient(baseURL)
     }
@@ -59,41 +43,6 @@ export class ApiClient {
     return this.httpClient.get<User>('/users/me')
   }
 
-  // Helper method to get mock data for testing
-  private getMockData() {
-    return {
-      '/auth/login': {
-        POST: {
-          data: {
-            user: {
-              id: '1',
-              username: 'testuser',
-              email: 'test@example.com',
-            },
-            token: 'mock-jwt-token'
-          },
-          status: 200,
-          delay: 500
-        }
-      },
-      '/auth/logout': {
-        POST: {
-          data: {},
-          status: 200
-        }
-      },
-      '/users/me': {
-        GET: {
-          data: {
-            id: '1',
-            username: 'testuser',
-            email: 'test@example.com'
-          },
-          status: 200
-        }
-      }
-    }
-  }
 }
 
 // Export a singleton instance
