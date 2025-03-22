@@ -1,0 +1,264 @@
+{
+  "applicant_info": {
+    "organization_phone_country_code": "US\/United States\/+1",
+    "phone_country_code": "US\/United States\/+1",
+    "phone_number": "2025556666",
+    "email": "heather@sisterscircle.org",
+    "mailing_address": {
+      "street_address_1": "303 Taplow Road",
+      "street_address_2": "",
+      "city": "Baltimore",
+      "state": "MD",
+      "postal_code": "21212",
+      "country": "US\/United States\/+1"
+    },
+    "address_of_operations": {
+      "is_same_as_mailing_address": false,
+      "street_address_1": "303 Taplow Road",
+      "street_address_2": "",
+      "city": "Baltimore",
+      "state": "MD",
+      "postal_code": "21212",
+      "country": "US\/United States\/+1"
+    },
+    "organization_phone_number": "2025551111",
+    "name": "Heather",
+    "title": "The older sister"
+  },
+  "public_charity_qualification": {
+    "country_of_operations": "US\/United States\/+1",
+    "local_currency": "USD\/United States Dollar",
+    "exchange_rate": 1,
+    "country": "US\/United States\/+1",
+    "financial_year_end": "2025-02-24T22:00:00.000Z",
+    "financial_data": {
+      "2021": {
+        "donations": 60000,
+        "membership_fees": 0,
+        "mission_related_revenue": 0,
+        "investment_income": 0,
+        "non_mission_income": 0,
+        "government_services": 0
+      },
+      "2022": {
+        "donations": 70000,
+        "membership_fees": 0,
+        "mission_related_revenue": 0,
+        "investment_income": 0,
+        "non_mission_income": 0,
+        "government_services": 0
+      },
+      "2023": {
+        "donations": 80000,
+        "membership_fees": 0,
+        "mission_related_revenue": 0,
+        "investment_income": 0,
+        "non_mission_income": 0,
+        "government_services": 0
+      },
+      "2024": {
+        "donations": 90000,
+        "membership_fees": 0,
+        "mission_related_revenue": 0,
+        "investment_income": 0,
+        "non_mission_income": 0,
+        "government_services": 0
+      },
+      "2025": {
+        "donations": 100000,
+        "membership_fees": 0,
+        "mission_related_revenue": 0,
+        "investment_income": 0,
+        "non_mission_income": 0,
+        "government_services": 0
+      }
+    },
+    "minor_donors": {
+      "2021": 50000,
+      "2022": 40000,
+      "2023": 30000,
+      "2024": 20000,
+      "2025": 10000
+    },
+    "major_donors": {
+      "2021": [
+        {
+          "name": "Donor 1",
+          "amount": 10000,
+          "exempted": true
+        }
+      ],
+      "2022": [
+        {
+          "name": "Donor 1",
+          "amount": 10000,
+          "exempted": true
+        },
+        {
+          "name": "Donor 2",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 3",
+          "amount": 10000,
+          "exempted": false
+        }
+      ],
+      "2023": [
+        {
+          "name": "Donor 1",
+          "amount": 10000,
+          "exempted": true
+        },
+        {
+          "name": "Donor 2",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 3",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 4",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 5",
+          "amount": 10000,
+          "exempted": false
+        }
+      ],
+      "2024": [
+        {
+          "name": "Donor 1",
+          "amount": 10000,
+          "exempted": true
+        },
+        {
+          "name": "Donor 2",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 3",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 4",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 5",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 6",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 7",
+          "amount": 10000,
+          "exempted": false
+        }
+      ],
+      "2025": [
+        {
+          "name": "Donor 1",
+          "amount": 10000,
+          "exempted": true
+        },
+        {
+          "name": "Donor 2",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 3",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 4",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 5",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 6",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 7",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 8",
+          "amount": 10000,
+          "exempted": false
+        },
+        {
+          "name": "Donor 9",
+          "amount": 10000,
+          "exempted": false
+        }
+      ]
+    }
+  },
+  "foreign_entity_affidavit": {
+    "country_of_operations": "US\/United States\/+1"
+  },
+  "non_profit_status": {
+    "is_organization_US_entity": true
+  },
+  "administrative_expenses": [
+    {
+      "name": "Admin Expense",
+      "amount": 100
+    }
+  ],
+  "bank_info": {
+    "account_last_4_digits": "4049",
+    "has_changed": true,
+    "bank_name": "Vabank",
+    "bank_country": "US\/United States\/+1",
+    "bank_address": "Bank Address",
+    "account_number": "2io34u2oi3",
+    "ach": "2394203",
+    "wire": "2394203",
+    "swift_bic_code": "UA728937"
+  },
+  "general_operating_funding": {
+    "has_amount_changed_from_last_year": true,
+    "amount": 100,
+    "explanation": "<p>test<\/p>"
+  },
+  "project_funding": {
+    "has_received_funding": true,
+    "was_completed": true,
+    "status": "<p>report<\/p>"
+  },
+  "new_project_funding": {
+    "is_requesting": true,
+    "name": "new",
+    "amount": 200,
+    "description": "<p>test<\/p>"
+  },
+  "additional_info": {
+    "wants_to_provide": true,
+    "notes": "<p>Some additional notes<\/p><p><br><\/p><p>In HTML programming language<\/p>"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Voting API",
+    "version": "1.0.0",
+    "description": "API endpoints for managing application votes"
+  },
+  "paths": {
+    "/api/applications/{application}/votes": {
+      "get": {
+        "summary": "Get all votes for an application",
+        "tags": ["Votes"],
+        "security": [
+          {
+            "sanctum": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Application UUID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of votes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Vote"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized - User doesn't have vote-on-funding permission"
+          }
+        }
+      }
+    },
+    "/api/applications/{application}/vote": {
+      "post": {
+        "summary": "Cast or update a vote for an application",
+        "tags": ["Votes"],
+        "security": [
+          {
+            "sanctum": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Application UUID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["vote_type", "vote_value"],
+                "properties": {
+                  "vote_type": {
+                    "type": "string",
+                    "enum": ["general", "project"],
+                    "description": "Type of vote"
+                  },
+                  "vote_value": {
+                    "type": "boolean",
+                    "description": "The vote decision (true for yes, false for no)"
+                  },
+                  "vote_note": {
+                    "type": "string",
+                    "maxLength": 1000,
+                    "nullable": true,
+                    "description": "Optional note about the vote"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vote successfully recorded and all current votes returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Vote"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized - User doesn't have vote-on-funding permission"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Vote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "vote_type": {
+            "type": "string",
+            "enum": ["general", "project"]
+          },
+          "vote_value": {
+            "type": "boolean"
+          },
+          "vote_note": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the user who cast the vote"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "sanctum": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
