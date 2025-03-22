@@ -1,4 +1,4 @@
-import { AxiosHttpClient, HttpClient } from './httpClient'
+import { FetchHttpClient, HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
 
 // Define types for API responses
@@ -29,7 +29,7 @@ export class ApiClient {
     if (import.meta.env.VITE_USE_MOCK_API === 'true') {
       this.httpClient = new MockHttpClient(baseURL, this.getMockData())
     } else {
-      this.httpClient = new AxiosHttpClient(baseURL)
+      this.httpClient = new FetchHttpClient(baseURL)
     }
   }
   

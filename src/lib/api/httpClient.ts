@@ -1,47 +1,96 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-
-export interface HttpClient {
-  get<T>(url: string, config?: AxiosRequestConfig): Promise<T>
-  post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>
-  delete<T>(url: string, config?: AxiosRequestConfig): Promise<T>
+export interface RequestConfig extends RequestInit {
+  params?: Record<string, string>
 }
 
-export class AxiosHttpClient implements HttpClient {
-  private client: AxiosInstance
+export interface HttpClient {
+  get<T>(url: string, config?: RequestConfig): Promise<T>
+  post<T>(url: string, data?: any, config?: RequestConfig): Promise<T>
+  put<T>(url: string, data?: any, config?: RequestConfig): Promise<T>
+  patch<T>(url: string, data?: any, config?: RequestConfig): Promise<T>
+  delete<T>(url: string, config?: RequestConfig): Promise<T>
+}
+
+export class FetchHttpClient implements HttpClient {
+  private baseURL: string
+  private defaultHeaders: HeadersInit
 
   constructor(baseURL: string) {
-    this.client = axios.create({
-      baseURL,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    this.baseURL = baseURL
+    this.defaultHeaders = {
+      'Content-Type': 'application/json',
+    }
+  }
+
+  private async request<T>(url: string, config: RequestConfig = {}): Promise<T> {
+    // Add query parameters if provided
+    let fullUrl = `${this.baseURL}${url}`
+    if (config.params) {
+      const queryParams = new URLSearchParams()
+      for (const [key, value] of Object.entries(config.params)) {
+        queryParams.append(key, value)
+      }
+      fullUrl += `?${queryParams.toString()}`
+    }
+
+    // Merge default headers with provided headers
+    const headers = {
+      ...this.defaultHeaders,
+      ...config.headers,
+    }
+
+    const response = await fetch(fullUrl, {
+      ...config,
+      headers,
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    // Check if response is empty
+    const contentType = response.headers.get('content-type')
+    if (contentType && contentType.includes('application/json')) {
+      return await response.json()
+    }
+    
+    return await response.text() as unknown as T
+  }
+
+  async get<T>(url: string, config?: RequestConfig): Promise<T> {
+    return this.request<T>(url, {
+      ...config,
+      method: 'GET',
     })
   }
 
-  async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.get(url, config)
-    return response.data
+  async post<T>(url: string, data?: any, config?: RequestConfig): Promise<T> {
+    return this.request<T>(url, {
+      ...config,
+      method: 'POST',
+      body: data ? JSON.stringify(data) : undefined,
+    })
   }
 
-  async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.post(url, data, config)
-    return response.data
+  async put<T>(url: string, data?: any, config?: RequestConfig): Promise<T> {
+    return this.request<T>(url, {
+      ...config,
+      method: 'PUT',
+      body: data ? JSON.stringify(data) : undefined,
+    })
   }
 
-  async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.put(url, data, config)
-    return response.data
+  async patch<T>(url: string, data?: any, config?: RequestConfig): Promise<T> {
+    return this.request<T>(url, {
+      ...config,
+      method: 'PATCH',
+      body: data ? JSON.stringify(data) : undefined,
+    })
   }
 
-  async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.patch(url, data, config)
-    return response.data
-  }
-
-  async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.delete(url, config)
-    return response.data
+  async delete<T>(url: string, config?: RequestConfig): Promise<T> {
+    return this.request<T>(url, {
+      ...config,
+      method: 'DELETE',
+    })
   }
 }
