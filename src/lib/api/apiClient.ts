@@ -1,5 +1,5 @@
 import { FetchHttpClient } from './httpClient'
-import { HttpClient } from './httpClient'
+import type { HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
 
 // Define types for API responses
