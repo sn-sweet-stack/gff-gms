@@ -1,4 +1,5 @@
-import { FetchHttpClient, HttpClient } from './httpClient'
+import { FetchHttpClient } from './httpClient'
+import { HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
 
 // Define types for API responses
@@ -21,10 +22,10 @@ export interface LoginResponse {
 
 export class ApiClient {
   private httpClient: HttpClient
-  
+
   constructor() {
     const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api'
-    
+
     // Use mock client if in mock mode
     if (import.meta.env.VITE_USE_MOCK_API === 'true') {
       this.httpClient = new MockHttpClient(baseURL, this.getMockData())
@@ -32,19 +33,19 @@ export class ApiClient {
       this.httpClient = new FetchHttpClient(baseURL)
     }
   }
-  
+
   // Authentication methods
   async login(credentials: LoginRequest): Promise<User> {
     const response = await this.httpClient.post<LoginResponse>('/auth/login', credentials)
-    
+
     // Store token in localStorage
     if (response.token) {
       localStorage.setItem('auth_token', response.token)
     }
-    
+
     return response.user
   }
-  
+
   async logout(): Promise<void> {
     try {
       await this.httpClient.post<void>('/auth/logout')
@@ -53,11 +54,11 @@ export class ApiClient {
       localStorage.removeItem('auth_token')
     }
   }
-  
+
   async getCurrentUser(): Promise<User> {
     return this.httpClient.get<User>('/users/me')
   }
-  
+
   // Helper method to get mock data for testing
   private getMockData() {
     return {
