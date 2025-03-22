@@ -8,6 +8,7 @@ export const authMockData: MockConfig = {
           id: '1',
           username: 'testuser',
           email: 'test@example.com',
+          role: 'admin',
         },
         token: 'mock-jwt-token'
       },
@@ -21,12 +22,16 @@ export const authMockData: MockConfig = {
       status: 200
     }
   },
-  'users/me': {
+  'appstate': {
     GET: {
       data: {
-        id: '1',
-        username: 'testuser',
-        email: 'test@example.com'
+        loggedIn: true,
+        user: {
+          id: '1',
+          username: 'testuser',
+          email: 'test@example.com',
+          role: 'admin'
+        }
       },
       status: 200
     }

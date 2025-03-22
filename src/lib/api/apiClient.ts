@@ -2,7 +2,7 @@ import { FetchHttpClient } from './httpClient'
 import type { HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
 import { mockData } from './mockdata'
-import type { User, LoginRequest, LoginResponse } from './types'
+import type { User, LoginRequest, LoginResponse, AppState } from './types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -39,8 +39,8 @@ export class ApiClient {
     }
   }
 
-  async getCurrentUser(): Promise<User> {
-    return this.httpClient.get<User>('/users/me')
+  async getAppState(): Promise<AppState> {
+    return this.httpClient.get<AppState>('/appstate')
   }
 
 }

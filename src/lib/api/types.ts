@@ -1,9 +1,17 @@
 // API response and request types
+export type UserRole = 'admin' | 'staff' | 'board' | 'trustee' | 'assignee'
+
 export interface User {
   id: string
   username: string
   email: string
+  role: UserRole
   token?: string
+}
+
+export interface AppState {
+  loggedIn: boolean
+  user: User | null
 }
 
 export interface LoginRequest {
