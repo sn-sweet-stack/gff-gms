@@ -43,14 +43,17 @@ export class MockHttpClient implements HttpClient {
     return this.mockResponse<T>('GET', url)
   }
 
+  // @ts-ignore
   async post<T>(url: string, data?: any): Promise<T> {
     return this.mockResponse<T>('POST', url)
   }
 
+  // @ts-ignore
   async put<T>(url: string, data?: any): Promise<T> {
     return this.mockResponse<T>('PUT', url)
   }
 
+  // @ts-ignore
   async patch<T>(url: string, data?: any): Promise<T> {
     return this.mockResponse<T>('PATCH', url)
   }

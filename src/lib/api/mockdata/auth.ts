@@ -28,7 +28,7 @@ export const authMockData: MockConfig = {
         loggedIn: true,
         user: {
           id: '1',
-          username: 'testuser',
+          username: 'Sergio Neskodi',
           email: 'test@example.com',
           role: 'admin'
         }
