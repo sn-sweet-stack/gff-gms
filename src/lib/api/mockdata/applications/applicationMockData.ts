@@ -4,9 +4,9 @@ import type { Application, ApplicationsResponse, ApplicationResponse } from './t
 
 // Helper function to filter applications based on query parameters
 function filterApplications(params?: Record<string, string>): Application[] {
-  if (!params) return applications
+  if (!params) return applications as Application[]
 
-  return applications.filter(app => {
+  return (applications as Application[]).filter(app => {
     // Filter by each parameter if it exists
     for (const [key, value] of Object.entries(params)) {
       if (key === 'status' && app.status !== value) return false
@@ -20,7 +20,7 @@ function filterApplications(params?: Record<string, string>): Application[] {
 // GET /applications - Get all applications with optional filtering
 const getApplications: MockResponse<ApplicationsResponse> = {
   status: 200,
-  data: { data: applications },
+  data: { data: applications as Application[] },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>) => ({
     status: 200,
@@ -31,11 +31,11 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 // GET /applications/:id - Get a single application by ID
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
-  data: { data: applications[0] },
+  data: { data: applications[0] as Application },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0]
-    const application = applications.find(app => app.id === id)
+    const application = (applications as Application[]).find(app => app.id === id)
 
     if (application) {
       return {
