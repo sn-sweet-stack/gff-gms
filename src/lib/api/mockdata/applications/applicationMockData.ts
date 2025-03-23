@@ -1,10 +1,26 @@
 import applications from './applications.json'
 import applicants from '../applicants/applicants.json'
+import revisions from '../revisions/application_revisions.json'
 import type { MockResponse } from '../../types'
-import type { Application, ApplicationsResponse, ApplicationResponse } from './types'
+import type { Application, ApplicationsResponse, ApplicationResponse, RevisionHistoryEntry } from './types'
 
-// Helper function to enrich applications with applicant data
-function enrichApplicationsWithApplicantData(apps: Application[]): Application[] {
+// Helper function to get simplified revision history for an application
+function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
+  return (revisions as any[])
+    .filter(rev => rev.application_id === applicationId)
+    .map(rev => ({
+      status: rev.application_row?.status || 'unknown',
+      author_name: rev.author_type === 'App\\Models\\Applicant' 
+        ? rev.application_row?.applicant?.name || 'Applicant'
+        : 'Staff Member',
+      created_at: rev.created_at,
+      notes: rev.status_notes
+    }))
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+}
+
+// Helper function to enrich applications with applicant data and revision history
+function enrichApplicationsWithApplicantData(apps: Application[], includeRevisions = false): Application[] {
   return apps.map(app => {
     const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
     return {
@@ -12,7 +28,9 @@ function enrichApplicationsWithApplicantData(apps: Application[]): Application[]
       applicant: applicant ? {
         gff_id: applicant.gff_id || '',
         organization_name: applicant.organization_name || ''
-      } : undefined
+      } : undefined,
+      // Only include revision history when requested (for single application view)
+      ...(includeRevisions ? { revision_history: getRevisionHistory(app.id) } : {})
     };
   });
 }
@@ -51,7 +69,7 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 // GET /applications/:id - Get a single application by ID
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
-  data: { data: enrichApplicationsWithApplicantData([applications[0] as Application])[0] },
+  data: { data: enrichApplicationsWithApplicantData([applications[0] as Application], true)[0] },
   // This handler will be called by the modified mockHttpClient
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
@@ -59,8 +77,8 @@ const getApplicationById: MockResponse<ApplicationResponse> = {
     const application = (applications as Application[]).find(app => app.id === id)
 
     if (application) {
-      // Enrich with applicant data
-      const enrichedApplication = enrichApplicationsWithApplicantData([application])[0];
+      // Enrich with applicant data and revision history
+      const enrichedApplication = enrichApplicationsWithApplicantData([application], true)[0];
       return {
         status: 200,
         data: { data: enrichedApplication }

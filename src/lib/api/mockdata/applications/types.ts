@@ -11,6 +11,14 @@ export type ApplicationStatus =
 
 export type ApplicationType = "renewal" | "new-grant"
 
+// Simple revision history entry for applications
+export interface RevisionHistoryEntry {
+  status: string;
+  author_name: string;
+  created_at: string;
+  notes: string | null;
+}
+
 export interface Application {
   id: string;
   type: ApplicationType;
@@ -23,6 +31,8 @@ export interface Application {
   submitted_at: string | null;
   // Applicant data fully or partially included in the application response
   applicant?: Partial<Applicant>;
+  // Revision history for the application
+  revision_history?: RevisionHistoryEntry[];
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string
