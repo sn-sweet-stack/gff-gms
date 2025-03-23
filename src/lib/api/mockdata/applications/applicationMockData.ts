@@ -19,8 +19,8 @@ function enrichApplicationsWithApplicantData(apps: Application[]): Application[]
 
 // Helper function to filter applications based on query parameters
 function filterApplications(params?: Record<string, string>): Application[] {
-  let filteredApps = applications as Application[];
-  
+  let filteredApps = applications as unknown as Application[];
+
   if (params) {
     filteredApps = filteredApps.filter(app => {
       // Filter by each parameter if it exists
@@ -32,7 +32,7 @@ function filterApplications(params?: Record<string, string>): Application[] {
       return true
     });
   }
-  
+
   // Enrich with applicant data after filtering
   return enrichApplicationsWithApplicantData(filteredApps);
 }

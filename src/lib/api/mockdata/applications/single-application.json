@@ -1,55 +1,289 @@
 [
-    {
-        "id": "9e800a94-42ee-4760-8f05-0130f4ff455a",
-        "type": "renewal",
-        "year": "2024",
-        "status": "accepted",
-        "application_enabled": 1,
-        "completing_person": null,
-        "opening_at": "2024-01-01T00:00:00.000000Z",
-        "closing_at": "2024-12-31T00:00:00.000000Z",
-        "submitted_at": null,
-        "payload": {
-            "applicant_info": {
-                "organization_phone_country_code": "US\/United States\/+1",
-                "phone_country_code": "US\/United States\/+1",
-                "phone_number": null,
-                "email": "",
-                "mailing_address": {
-                    "street_address_1": "",
-                    "street_address_2": "",
-                    "city": "",
-                    "state": "",
-                    "postal_code": "",
-                    "country": "US\/United States\/+1"
-                }
-            },
-            "public_charity_qualification": {
-                "country_of_operations": "US\/United States\/+1"
-            },
-            "foreign_entity_affidavit": {
-                "country_of_operations": "US\/United States\/+1"
-            },
-            "general_operating_funding": {
-                "has_amount_changed_from_last_year": true,
-                "amount": 15000,
-                "explanation": "<p>Imported from 2024 Grants.xlsx<\/p>"
-            },
-            "new_project_funding": {
-                "is_requesting": false
-            },
-            "funding": {
-                "general_operating_funding": 15000,
-                "project_funding": 0,
-                "total_funding": 15000,
-                "source": "Imported from 2024 Grants.xlsx"
-            }
-        },
-        "deleted_at": null,
-        "created_at": "2025-03-23T11:01:44.000000Z",
-        "updated_at": "2025-03-23T11:01:44.000000Z",
-        "applicant_id": "9e800a92-923b-4a1f-9053-7b98302e88d6",
-        "banking_credential_id": "9e800a92-945d-4013-ba5b-1eb560ca18cd",
-        "last_revision_id": null
-    }
+  {
+      "id": "9e800a92-902f-4d47-bc59-c8c60cbb7b73",
+      "type": "renewal",
+      "year": "2025",
+      "status": "submitted",
+      "application_enabled": 1,
+      "completing_person": null,
+      "opening_at": "2025-03-15T00:00:00.000000Z",
+      "closing_at": "2025-04-30T23:59:59.000000Z",
+      "submitted_at": "2025-03-23T11:23:42.000000Z",
+      "payload": {
+          "applicant_info": {
+              "organization_phone_country_code": "US\/United States\/+1",
+              "phone_country_code": "US\/United States\/+1",
+              "phone_number": "2025551111",
+              "email": "john@example.com",
+              "mailing_address": {
+                  "street_address_1": "Main Street",
+                  "street_address_2": "",
+                  "city": "Manchester",
+                  "state": "Nevada",
+                  "postal_code": "28398",
+                  "country": "US\/United States\/+1"
+              },
+              "address_of_operations": {
+                  "is_same_as_mailing_address": false,
+                  "street_address_1": "Operations Street",
+                  "city": "Liverpool",
+                  "state": "Wyoming",
+                  "postal_code": "73228",
+                  "country": "RW\/Rwanda\/+250"
+              },
+              "organization_phone_number": "2025551111",
+              "website": "https:\/\/example.com",
+              "name": "John Doe",
+              "title": "CEO",
+              "additional_contacts": [
+                  {
+                      "name": "Contact 2",
+                      "title": "CFO",
+                      "phone_country_code": "US\/United States\/+1",
+                      "phone_number": "2025552222",
+                      "email": "contact@example.com"
+                  }
+              ]
+          },
+          "public_charity_qualification": {
+              "country_of_operations": "US\/United States\/+1",
+              "local_currency": "USD\/United States Dollar",
+              "exchange_rate": 1,
+              "country": "US\/United States\/+1",
+              "financial_year_end": "2025-03-19T22:00:00.000Z",
+              "financial_data": {
+                  "2021": {
+                      "donations": 500000,
+                      "membership_fees": 50000,
+                      "mission_related_revenue": 40000,
+                      "investment_income": 40000,
+                      "non_mission_income": 40000,
+                      "government_services": 40000
+                  },
+                  "2022": {
+                      "donations": 400000,
+                      "membership_fees": 50000,
+                      "mission_related_revenue": 40000,
+                      "investment_income": 40000,
+                      "non_mission_income": 40000,
+                      "government_services": 40000
+                  },
+                  "2023": {
+                      "donations": 300000,
+                      "membership_fees": 50000,
+                      "mission_related_revenue": 40000,
+                      "investment_income": 40000,
+                      "non_mission_income": 40000,
+                      "government_services": 40000
+                  },
+                  "2024": {
+                      "donations": 200000,
+                      "membership_fees": 50000,
+                      "mission_related_revenue": 40000,
+                      "investment_income": 40000,
+                      "non_mission_income": 40000,
+                      "government_services": 40000
+                  },
+                  "2025": {
+                      "donations": 100000,
+                      "membership_fees": 50000,
+                      "mission_related_revenue": 40000,
+                      "investment_income": 40000,
+                      "non_mission_income": 40000,
+                      "government_services": 40000
+                  }
+              },
+              "minor_donors": {
+                  "2021": 400000,
+                  "2022": 300000,
+                  "2023": 200000,
+                  "2024": 100000,
+                  "2025": 50000
+              },
+              "major_donors": {
+                  "2021": [
+                      {
+                          "name": "Big Donor 1",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 2",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 3",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 4",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 5",
+                          "amount": 20000,
+                          "exempted": true
+                      }
+                  ],
+                  "2022": [
+                      {
+                          "name": "Big Donor 1",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 2",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 3",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 4",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 5",
+                          "amount": 20000,
+                          "exempted": false
+                      }
+                  ],
+                  "2023": [
+                      {
+                          "name": "Big Donor 1",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 2",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 3",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 4",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 5",
+                          "amount": 20000,
+                          "exempted": true
+                      }
+                  ],
+                  "2024": [
+                      {
+                          "name": "Big Donor 1",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 2",
+                          "amount": 20000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 3",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 4",
+                          "amount": 20000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 5",
+                          "amount": 20000,
+                          "exempted": false
+                      }
+                  ],
+                  "2025": [
+                      {
+                          "name": "Big Donor 1",
+                          "amount": 10000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 2",
+                          "amount": 10000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 3",
+                          "amount": 10000,
+                          "exempted": true
+                      },
+                      {
+                          "name": "Big Donor 4",
+                          "amount": 10000,
+                          "exempted": false
+                      },
+                      {
+                          "name": "Big Donor 5",
+                          "amount": 10000,
+                          "exempted": true
+                      }
+                  ]
+              }
+          },
+          "foreign_entity_affidavit": {
+              "country_of_operations": "US\/United States\/+1"
+          },
+          "non_profit_status": {
+              "is_organization_US_entity": true
+          },
+          "general_operating_funding": {
+              "has_amount_changed_from_last_year": true,
+              "amount": 10000,
+              "explanation": "<p>Explanation<\/p>"
+          },
+          "project_funding": {
+              "has_received_funding": true,
+              "was_completed": true,
+              "status": "<p>Final project report<\/p><p><br><\/p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sollicitudin nunc, sit amet euismod ante. Proin pellentesque, magna ut finibus egestas, neque ante feugiat purus, nec placerat ligula est in ante. Nullam sit amet ullamcorper odio. Ut scelerisque orci a purus porta, eu tempor tellus pharetra. Ut eu magna vel mauris efficitur mollis non vel nisl. Sed feugiat nec nulla bibendum congue. Phasellus a dapibus ligula. Maecenas sollicitudin turpis nulla, id sodales ante consequat ut.<\/span><\/p><p class=\"ql-align-justify\"><br><\/p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Pellentesque at cursus neque. Proin eros quam, mattis a blandit in, porta sit amet enim. Vestibulum finibus tempor nisl, hendrerit gravida urna scelerisque eu. Donec posuere hendrerit sem, ac dignissim leo dictum at. Praesent congue tincidunt lectus, nec dignissim quam elementum in. Pellentesque pharetra molestie varius. Cras a tortor facilisis magna rutrum malesuada nec volutpat ante. Morbi maximus ligula in massa aliquet, sit amet euismod risus iaculis. Vivamus aliquet lacus a nibh vestibulum, sit amet elementum urna blandit. Sed faucibus, dolor venenatis pellentesque pellentesque, est lectus laoreet tortor, in molestie dui diam ut diam.<\/span><\/p><p><br><\/p>"
+          },
+          "new_project_funding": {
+              "is_requesting": true,
+              "name": "My New Project",
+              "amount": 100000,
+              "description": "<p>This time I need 100 000<\/p><p><br><\/p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Phasellus at sapien ante. Duis et ex sit amet eros rutrum consequat vel in nisl. Quisque congue lectus eu nulla molestie mollis. In tincidunt turpis in turpis ullamcorper, nec fermentum ex mollis. Integer rutrum dictum nunc id pellentesque. Vivamus auctor fermentum orci sit amet pretium. Vestibulum mollis maximus sem eget aliquet. Maecenas aliquet mollis risus, sed imperdiet nisi aliquet sed.<\/span><\/p><p class=\"ql-align-justify\"><br><\/p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris iaculis, quam in convallis ullamcorper, urna urna congue velit, a ullamcorper sem nisl vitae velit. Mauris viverra lacinia cursus. Vivamus vel quam ut velit hendrerit viverra. Nam vestibulum, orci aliquet bibendum aliquam, enim neque finibus urna, eget porta lacus arcu sit amet sapien. Integer vitae sapien laoreet lacus auctor vestibulum et nec tortor. Sed suscipit justo sit amet accumsan condimentum. Donec vehicula orci leo, eu rutrum velit tincidunt a. Nulla eleifend imperdiet risus, vitae vehicula ex fermentum vel. Sed congue lobortis neque quis sodales. Proin nec sem eget felis commodo porttitor. Nam erat turpis, facilisis at pulvinar ac, viverra vitae quam.<\/span><\/p><p><br><\/p>"
+          },
+          "administrative_expenses": [
+              {
+                  "name": "Main admin expense",
+                  "amount": 10000
+              }
+          ],
+          "bank_info": {
+              "has_changed": true,
+              "bank_name": "New Bank",
+              "bank_country": "RW\/Rwanda\/+250",
+              "bank_address": "Rwanda Address, 1",
+              "account_number": "2o3494580940",
+              "swift_bic_code": "RW129383"
+          },
+          "additional_info": {
+              "wants_to_provide": true,
+              "notes": "<p>Some additional info<\/p>"
+          }
+      },
+      "deleted_at": null,
+      "created_at": "2025-03-23T11:01:43.000000Z",
+      "updated_at": "2025-03-23T11:23:42.000000Z",
+      "applicant_id": "9e800a92-8c9d-490c-960e-b5ef1b7a99bb",
+      "banking_credential_id": "9e800a92-8f00-45cb-aa47-bbbbb4115476",
+      "last_revision_id": "9e80126e-c2df-4c84-a75a-59b698598715"
+  }
 ]

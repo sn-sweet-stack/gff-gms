@@ -1,21 +1,29 @@
-export type ApplicationStatus = 'draft' | 'submitted' | 'under_review' | 'approved' | 'rejected' | 'accepted'
-export type ApplicationType = 'renewal' | 'grant' | 'loan' | 'scholarship'
+export type ApplicationStatus =
+  "pending"
+  | "submitted"
+  | "needs-resubmitting"
+  | "accepted"
+  | "rejected"
+  | "board-voted"
+  | "resubmitted"
+
+export type ApplicationType = "renewal" | "new-grant"
 
 export interface Application {
-  id: string
-  type: ApplicationType
-  year: string
-  status: ApplicationStatus
-  application_enabled: number
-  completing_person: string | null
-  opening_at: string
-  closing_at: string
-  submitted_at: string | null
+  id: string;
+  type: ApplicationType;
+  year: string;
+  status: ApplicationStatus;
+  application_enabled: number;
+  completing_person: string | null;
+  opening_at: string;
+  closing_at: string;
+  submitted_at: string | null;
   // Applicant data included in the application response
   applicant?: {
     gff_id: string
     organization_name: string
-  }
+  };
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string
@@ -115,25 +123,19 @@ export interface Application {
       wants_to_provide?: boolean
       notes?: string
     }
-    funding?: {
-      general_operating_funding?: number
-      project_funding?: number
-      total_funding?: number
-      source?: string
-    }
-  }
-  deleted_at: string | null
-  created_at: string
-  updated_at: string
-  applicant_id: string
-  banking_credential_id: string
-  last_revision_id: string | null
+  };
+  deleted_at: string | null;
+  created_at: string;
+  updated_at: string;
+  applicant_id: string;
+  banking_credential_id: string;
+  last_revision_id: string | null;
 }
 
 export interface ApplicationsResponse {
-  data: Application[]
+  data: Application[];
 }
 
 export interface ApplicationResponse {
-  data: Application
+  data: Application;
 }
