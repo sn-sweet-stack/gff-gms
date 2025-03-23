@@ -1,4 +1,5 @@
 import type { MockConfig } from '../../types'
+import type { User } from '../../auth/types'
 
 export const authMockData: MockConfig = {
   'auth/login': {
