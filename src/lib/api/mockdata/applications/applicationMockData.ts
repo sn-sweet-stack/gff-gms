@@ -21,25 +21,35 @@ function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
     .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 }
 
-// Helper function to enrich applications with applicant data, banking credentials, and revision history
-function enrichApplications(apps: Application[], includeDetails = false): Application[] {
+// Helper function to enrich a single application with full details
+function enrichApplication(app: Application): Application {
+  const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
+  const bankingCredential = (bankingCredentials as unknown as BankingCredential[]).find(
+    bc => bc.id === app.banking_credential_id
+  );
+  
+  return {
+    ...app,
+    applicant: applicant ? {
+      gff_id: applicant.gff_id || '',
+      organization_name: applicant.organization_name || ''
+    } : undefined,
+    revisions: getRevisionHistory(app.id),
+    banking_credential: bankingCredential
+  };
+}
+
+// Helper function to enrich multiple applications with minimal applicant data
+function enrichApplicationsWithBasicInfo(apps: Application[]): Application[] {
   return apps.map(app => {
     const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
-    const bankingCredential = includeDetails ? 
-      (bankingCredentials as unknown as BankingCredential[]).find(bc => bc.id === app.banking_credential_id) : 
-      undefined;
     
     return {
       ...app,
       applicant: applicant ? {
         gff_id: applicant.gff_id || '',
         organization_name: applicant.organization_name || ''
-      } : undefined,
-      // Only include additional details when requested (for single application view)
-      ...(includeDetails ? { 
-        revisions: getRevisionHistory(app.id),
-        banking_credential: bankingCredential
-      } : {})
+      } : undefined
     };
   });
 }
@@ -60,14 +70,14 @@ function filterApplications(params?: Record<string, string>): Application[] {
     });
   }
 
-  // Enrich with applicant data after filtering
-  return enrichApplications(filteredApps);
+  // Enrich with basic applicant data after filtering
+  return enrichApplicationsWithBasicInfo(filteredApps);
 }
 
 // GET /applications - Get all applications with optional filtering
 const getApplications: MockResponse<ApplicationsResponse> = {
   status: 200,
-  data: { data: enrichApplications(applications as Application[]) },
+  data: { data: enrichApplicationsWithBasicInfo(applications as unknown as Application[]) },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>) => ({
     status: 200,
@@ -78,16 +88,16 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 // GET /applications/:id - Get a single application by ID
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
-  data: { data: enrichApplications([applications[0] as Application], true)[0] },
+  data: { data: enrichApplication(applications[0] as unknown as Application) },
   // This handler will be called by the modified mockHttpClient
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0]
-    const application = (applications as Application[]).find(app => app.id === id)
+    const application = (applications as unknown as Application[]).find(app => app.id === id)
 
     if (application) {
-      // Enrich with applicant data, banking credentials, and revision history
-      const enrichedApplication = enrichApplications([application], true)[0];
+      // Enrich with full details including applicant data, banking credentials, and revision history
+      const enrichedApplication = enrichApplication(application);
       return {
         status: 200,
         data: { data: enrichedApplication }
