@@ -4,39 +4,15 @@ import type { MockResponse } from '../../types'
 import type { Media, MediasResponse, MediaResponse } from './types'
 
 // Helper function to filter media based on query parameters
+// @ts-ignore
 function filterMedia(params?: Record<string, string>): Media[] {
   let filteredMedia = media as unknown as Media[];
 
   // If application_id is provided, return media for a specific application
-  if (params?.application_id === '9e800a92-9b21-48f8-b33e-9213948f769b') {
-    return filteredMedia.filter(item => 
-      item.model_type === 'App\\Models\\Application' && 
-      item.model_id === '9e800a92-9b21-48f8-b33e-9213948f769b'
-    );
-  }
-  
-  // If revision_id is provided, return media for a specific revision
-  if (params?.revision_id) {
-    return filteredMedia.filter(item => 
-      item.model_type === 'App\\Models\\Revision' && 
-      item.model_id === params.revision_id
-    );
-  }
-
-  // Otherwise filter by standard parameters
-  if (params) {
-    filteredMedia = filteredMedia.filter(item => {
-      // Filter by each parameter if it exists
-      for (const [key, value] of Object.entries(params)) {
-        if (key === 'model_type' && item.model_type !== value) return false;
-        if (key === 'model_id' && item.model_id !== value) return false;
-        if (key === 'collection_name' && item.collection_name !== value) return false;
-      }
-      return true;
-    });
-  }
-
-  return filteredMedia;
+  return filteredMedia.filter(item =>
+    item.model_type === "App\\Models\\Application" &&
+    item.model_id === "9e800a92-9b21-48f8-b33e-9213948f769b"
+  );
 }
 
 // GET /media - Get all media with optional filtering

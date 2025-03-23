@@ -26,8 +26,8 @@ function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
 // Helper function to get media files for an application
 function getApplicationMedia(applicationId: string): Media[] {
   return (mediaFiles as unknown as Media[])
-    .filter(media => 
-      media.model_type === 'App\\Models\\Application' && 
+    .filter(media =>
+      media.model_type === 'App\\Models\\Application' &&
       media.model_id === applicationId
     );
 }
@@ -48,7 +48,7 @@ function enrichApplication(app: Application): Application {
     } : undefined,
     revisions: getRevisionHistory(app.id),
     banking_credential: bankingCredential,
-    media: mediaItems.length > 0 ? mediaItems : undefined
+    media: mediaItems
   };
 }
 
