@@ -4,7 +4,7 @@ export * from './mockdata/applications/types'
 
 // Mock data types
 export interface MockResponse<T = any> {
-  data: T
+  data?: T
   status: number
   delay?: number
   handler?: (params?: Record<string, string>, urlParams?: string[]) => MockResponse<T>

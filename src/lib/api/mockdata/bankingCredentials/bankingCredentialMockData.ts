@@ -7,6 +7,7 @@ import type { BankingCredential, BankingCredentialsResponse, BankingCredentialRe
 const getBankingCredentialById: MockResponse<BankingCredentialResponse> = {
   status: 200,
   data: { data: singleBankingCredential[0] as unknown as BankingCredential },
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0];
     const credential = (bankingCredentials as unknown as BankingCredential[]).find(cred => cred.id === id);
@@ -29,6 +30,7 @@ const getBankingCredentialById: MockResponse<BankingCredentialResponse> = {
 const getApplicantBankingCredentials: MockResponse<BankingCredentialsResponse> = {
   status: 200,
   data: { data: [] },
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const applicantId = urlParams?.[0];
     const applicantCredentials = (bankingCredentials as unknown as BankingCredential[]).filter(

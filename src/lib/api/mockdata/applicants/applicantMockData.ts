@@ -1,5 +1,4 @@
 import applicants from './applicants.json'
-import singleApplicant from './single-applicant.json'
 import type { MockResponse } from '../../types'
 import type { Applicant, ApplicantsResponse, ApplicantResponse } from './types'
 
@@ -24,7 +23,6 @@ function filterApplicants(params?: Record<string, string>): Applicant[] {
 // GET /applicants - Get all applicants with optional filtering
 const getApplicants: MockResponse<ApplicantsResponse> = {
   status: 200,
-  data: { data: applicants as unknown as Applicant[] },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>) => ({
     status: 200,
@@ -35,7 +33,6 @@ const getApplicants: MockResponse<ApplicantsResponse> = {
 // GET /applicants/:id - Get a single applicant by ID
 const getApplicantById: MockResponse<ApplicantResponse> = {
   status: 200,
-  data: { data: singleApplicant[0] as unknown as Applicant },
   // This handler will be called by the modified mockHttpClient
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {

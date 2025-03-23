@@ -23,7 +23,6 @@ function filterRevisions(params?: Record<string, string>): Revision[] {
 // GET /revisions - Get all revisions with optional filtering
 const getRevisions: MockResponse<RevisionsResponse> = {
   status: 200,
-  data: { data: revisions as unknown as Revision[] },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>) => ({
     status: 200,
@@ -34,7 +33,6 @@ const getRevisions: MockResponse<RevisionsResponse> = {
 // GET /revisions/:id - Get a single revision by ID
 const getRevisionById: MockResponse<RevisionResponse> = {
   status: 200,
-  data: { data: revisions[0] as unknown as Revision },
   // This handler will be called by the modified mockHttpClient
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
@@ -58,7 +56,6 @@ const getRevisionById: MockResponse<RevisionResponse> = {
 // GET /applications/:id/revisions - Get revisions for a specific application
 const getApplicationRevisions: MockResponse<RevisionsResponse> = {
   status: 200,
-  data: { data: [] },
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const applicationId = urlParams?.[0];

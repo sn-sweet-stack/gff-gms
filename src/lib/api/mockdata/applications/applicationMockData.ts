@@ -27,7 +27,7 @@ function enrichApplication(app: Application): Application {
   const bankingCredential = (bankingCredentials as unknown as BankingCredential[]).find(
     bc => bc.id === app.banking_credential_id
   );
-  
+
   return {
     ...app,
     applicant: applicant ? {
@@ -43,7 +43,7 @@ function enrichApplication(app: Application): Application {
 function enrichApplicationsWithBasicInfo(apps: Application[]): Application[] {
   return apps.map(app => {
     const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
-    
+
     return {
       ...app,
       applicant: applicant ? {
@@ -88,6 +88,7 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
   // Only need the handler for dynamic responses
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0]
     const application = (applications as unknown as Application[]).find(app => app.id === id)
