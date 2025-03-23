@@ -6,7 +6,7 @@ import type { Media, MediasResponse, MediaResponse } from './types'
 // Helper function to filter media based on query parameters
 function filterMedia(params?: Record<string, string>): Media[] {
   let filteredMedia = media as unknown as Media[];
-  
+
   if (params) {
     filteredMedia = filteredMedia.filter(item => {
       // Filter by each parameter if it exists
@@ -18,7 +18,7 @@ function filterMedia(params?: Record<string, string>): Media[] {
       return true;
     });
   }
-  
+
   return filteredMedia;
 }
 
@@ -34,9 +34,10 @@ const getMedia: MockResponse<MediasResponse> = {
 // GET /media/:id - Get a single media by ID
 const getMediaById: MockResponse<MediaResponse> = {
   status: 200,
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0];
-    const mediaItem = (singleMedia as unknown as Media[]).find(item => item.id === id) || 
+    const mediaItem = (singleMedia as unknown as Media[]).find(item => item.id === id) ||
                      (media as unknown as Media[]).find(item => item.id === id);
 
     if (mediaItem) {
@@ -56,6 +57,7 @@ const getMediaById: MockResponse<MediaResponse> = {
 // GET /applications/:id/media - Get media for a specific application
 const getApplicationMedia: MockResponse<MediasResponse> = {
   status: 200,
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const applicationId = urlParams?.[0];
     const applicationMedia = (media as unknown as Media[]).filter(
