@@ -1,4 +1,4 @@
-export interface MailingAddress {
+export interface Address {
   street_address_1: string;
   street_address_2?: string;
   city: string;
@@ -7,13 +7,8 @@ export interface MailingAddress {
   country: string;
 }
 
-export interface AddressOfOperations {
+export interface AddressOfOperations extends Address {
   is_same_as_mailing_address?: boolean;
-  street_address_1?: string;
-  city?: string;
-  state?: string;
-  postal_code?: string;
-  country?: string;
 }
 
 export interface Applicant {
@@ -29,7 +24,7 @@ export interface Applicant {
   email: string;
   additional_emails: string[] | null;
   website: string | null;
-  mailing_address: MailingAddress;
+  mailing_address: Address;
   address_of_operations: AddressOfOperations | null;
   normalized_organization_name: string;
   deleted_at: string | null;

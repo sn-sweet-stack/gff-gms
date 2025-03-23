@@ -1,3 +1,5 @@
+import { Address } from '../applicants/types';
+
 export type ApplicationStatus =
   "pending"
   | "submitted"
@@ -30,21 +32,9 @@ export interface Application {
       phone_country_code?: string
       phone_number?: string | null
       email?: string
-      mailing_address?: {
-        street_address_1?: string
-        street_address_2?: string
-        city?: string
-        state?: string
-        postal_code?: string
-        country?: string
-      }
-      address_of_operations?: {
+      mailing_address?: Partial<Address>
+      address_of_operations?: Partial<Address> & {
         is_same_as_mailing_address?: boolean
-        street_address_1?: string
-        city?: string
-        state?: string
-        postal_code?: string
-        country?: string
       }
       organization_phone_number?: string
       website?: string
