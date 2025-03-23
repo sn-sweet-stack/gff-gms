@@ -6,7 +6,7 @@ import type { Applicant, ApplicantsResponse, ApplicantResponse } from './types'
 // Helper function to filter applicants based on query parameters
 function filterApplicants(params?: Record<string, string>): Applicant[] {
   let filteredApplicants = applicants as unknown as Applicant[];
-  
+
   if (params) {
     filteredApplicants = filteredApplicants.filter(applicant => {
       // Filter by each parameter if it exists
@@ -17,7 +17,7 @@ function filterApplicants(params?: Record<string, string>): Applicant[] {
       return true;
     });
   }
-  
+
   return filteredApplicants;
 }
 
@@ -37,6 +37,7 @@ const getApplicantById: MockResponse<ApplicantResponse> = {
   status: 200,
   data: { data: singleApplicant[0] as unknown as Applicant },
   // This handler will be called by the modified mockHttpClient
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0];
     const applicant = (applicants as unknown as Applicant[]).find(app => app.id === id);

@@ -1,4 +1,4 @@
-import { Address } from '../applicants/types';
+import type { Address, Applicant } from "../applicants/types";
 
 export type ApplicationStatus =
   "pending"
@@ -21,11 +21,8 @@ export interface Application {
   opening_at: string;
   closing_at: string;
   submitted_at: string | null;
-  // Applicant data included in the application response
-  applicant?: {
-    gff_id: string
-    organization_name: string
-  };
+  // Applicant data fully or partially included in the application response
+  applicant?: Partial<Applicant>;
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string
