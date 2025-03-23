@@ -19,7 +19,25 @@ const handleLogout = async () => {
     <!-- Header -->
     <header class="bg-blue-600 text-white shadow">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">Application Dashboard</h1>
+        <div class="flex items-center space-x-6">
+          <h1 class="text-xl font-bold">Application Dashboard</h1>
+          <nav class="hidden md:flex space-x-4">
+            <router-link 
+              to="/" 
+              class="text-white hover:text-blue-200 px-2 py-1 rounded transition"
+              active-class="bg-blue-700"
+            >
+              Home
+            </router-link>
+            <router-link 
+              to="/applications" 
+              class="text-white hover:text-blue-200 px-2 py-1 rounded transition"
+              active-class="bg-blue-700"
+            >
+              Applications
+            </router-link>
+          </nav>
+        </div>
         <div class="flex items-center space-x-4">
           <div v-if="user" class="text-sm">
             <span class="mr-2">{{ user.username }}</span>
