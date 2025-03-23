@@ -1,0 +1,180 @@
+[
+    {
+        "id": "9e44007c-b12b-4827-803c-0186d190177e",
+        "author_type": "App\\Models\\Applicant",
+        "author_id": "9e43d6f2-9ee0-4f5f-8b60-2ebd559e363b",
+        "application_row": {
+            "id": "9e43d6f2-a4d3-4f84-981d-0b1e7c76cb8a",
+            "type": "renewal",
+            "status": "submitted",
+            "completing_person": null,
+            "opening_at": "2025-02-20T12:47:42.000000Z",
+            "closing_at": "2025-04-30T23:59:59.000000Z",
+            "submitted_at": "2025-02-21T14:43:51.000000Z",
+            "payload": {
+                "applicant_info": {
+                    "organization_phone_country_code": "US\/United States\/+1",
+                    "phone_country_code": "US\/United States\/+1",
+                    "phone_number": "2025551112",
+                    "email": "stephanie@disabilityempowhernetwork.org",
+                    "mailing_address": {
+                        "street_address_1": "110 Wembly Road",
+                        "street_address_2": "",
+                        "city": "Rochester",
+                        "state": "NY",
+                        "postal_code": "14616",
+                        "country": "US\/United States\/+1"
+                    },
+                    "organization_phone_number": "2025551111",
+                    "name": "Maksym",
+                    "title": "Developer",
+                    "address_of_operations": {
+                        "is_same_as_mailing_address": true
+                    }
+                },
+                "public_charity_qualification": {
+                    "country_of_operations": "US\/United States\/+1",
+                    "local_currency": "USD\/United States Dollar",
+                    "exchange_rate": 1,
+                    "country": "US\/United States\/+1",
+                    "financial_year_end": "2025-02-19T22:00:00.000Z",
+                    "financial_data": {
+                        "2021": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "2022": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "2023": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "2024": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        "2025": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "minor_donors": {
+                        "2021": 0,
+                        "2022": 0,
+                        "2023": 0,
+                        "2024": 0,
+                        "2025": 0
+                    },
+                    "major_donors": {
+                        "2021": [],
+                        "2022": [],
+                        "2023": [],
+                        "2024": [],
+                        "2025": []
+                    }
+                },
+                "foreign_entity_affidavit": {
+                    "country_of_operations": "US\/United States\/+1"
+                },
+                "non_profit_status": {
+                    "is_organization_US_entity": true
+                },
+                "administrative_expenses": [
+                    {
+                        "name": "Maksym",
+                        "amount": 2022
+                    }
+                ],
+                "bank_info": {
+                    "has_changed": true,
+                    "bank_name": "Name",
+                    "bank_country": "US\/United States\/+1",
+                    "bank_address": "1234",
+                    "account_number": "12312412",
+                    "ach": "123123123"
+                },
+                "additional_info": {
+                    "wants_to_provide": true
+                }
+            },
+            "deleted_at": null,
+            "created_at": "2025-02-21T12:47:42.000000Z",
+            "updated_at": "2025-02-21T14:43:51.000000Z",
+            "applicant_id": "9e43d6f2-9ee0-4f5f-8b60-2ebd559e363b",
+            "banking_credential_id": "9e43d6f2-a2db-4c6a-abfb-da26cf774923",
+            "last_revision_id": null,
+            "applicant": {
+                "id": "9e43d6f2-9ee0-4f5f-8b60-2ebd559e363b",
+                "gff_id": "G24-03",
+                "organization_name": "Disability EmpowHer Network",
+                "organization_phone_country_code": "US\/United States\/+1",
+                "name": null,
+                "title": null,
+                "phone_number": null,
+                "phone_country_code": "US\/United States\/+1",
+                "additional_phones": null,
+                "email": "stephanie@disabilityempowhernetwork.org",
+                "additional_emails": null,
+                "website": null,
+                "mailing_address": {
+                    "street_address_1": "110 Wembly Road",
+                    "street_address_2": "",
+                    "city": "Rochester",
+                    "state": "NY",
+                    "postal_code": "14616",
+                    "country": "US\/United States\/+1"
+                },
+                "address_of_operations": null,
+                "normalized_organization_name": "disability-empowher-network",
+                "deleted_at": null,
+                "created_at": "2025-02-21T12:47:42.000000Z",
+                "updated_at": "2025-02-21T12:47:42.000000Z"
+            },
+            "banking_credential": {
+                "id": "9e43d6f2-a2db-4c6a-abfb-da26cf774923",
+                "bank_name": "Chase Bank",
+                "bank_country": "US\/United States\/+1",
+                "bank_address": "3917 Lake Ave, Rochester, NY, 14612",
+                "account_number": "732955569",
+                "ach": "022300173",
+                "wire": null,
+                "swift_bic_code": "CHASUS33",
+                "deleted_at": null,
+                "created_at": "2025-02-21T12:47:42.000000Z",
+                "updated_at": "2025-02-21T12:47:42.000000Z",
+                "applicant_id": "9e43d6f2-9ee0-4f5f-8b60-2ebd559e363b"
+            }
+        },
+        "changed_fields": {
+            "status": "submitted"
+        },
+        "change_type": "updated",
+        "status_notes": null,
+        "deleted_at": null,
+        "created_at": "2025-02-21T09:43:51.000000Z",
+        "updated_at": "2025-02-21T09:43:51.000000Z",
+        "application_id": "9e43d6f2-a4d3-4f84-981d-0b1e7c76cb8a"
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "id": "9e800a92-80ed-4916-b7f5-0464b001c115",
+        "gff_id": "G02-01",
+        "organization_name": "Balavidyalaya Trust",
+        "organization_phone_country_code": "IN\/India\/+91",
+        "name": null,
+        "title": null,
+        "phone_number": null,
+        "phone_country_code": "IN\/India\/+91",
+        "additional_phones": null,
+        "email": "meerasuresh1@gmail.com",
+        "additional_emails": null,
+        "website": null,
+        "mailing_address": {
+            "street_address_1": "18, First Cross Street",
+            "street_address_2": "Shastri Nagar",
+            "city": "Chennai",
+            "state": "",
+            "postal_code": "600020",
+            "country": "IN\/India\/+91"
+        },
+        "address_of_operations": null,
+        "normalized_organization_name": "balavidyalaya-trust",
+        "deleted_at": null,
+        "created_at": "2025-03-23T11:01:43.000000Z",
+        "updated_at": "2025-03-23T11:01:43.000000Z"
+    }
+]

@@ -1,0 +1,55 @@
+[
+    {
+        "id": "9e800a94-42ee-4760-8f05-0130f4ff455a",
+        "type": "renewal",
+        "year": "2024",
+        "status": "accepted",
+        "application_enabled": 1,
+        "completing_person": null,
+        "opening_at": "2024-01-01T00:00:00.000000Z",
+        "closing_at": "2024-12-31T00:00:00.000000Z",
+        "submitted_at": null,
+        "payload": {
+            "applicant_info": {
+                "organization_phone_country_code": "US\/United States\/+1",
+                "phone_country_code": "US\/United States\/+1",
+                "phone_number": null,
+                "email": "",
+                "mailing_address": {
+                    "street_address_1": "",
+                    "street_address_2": "",
+                    "city": "",
+                    "state": "",
+                    "postal_code": "",
+                    "country": "US\/United States\/+1"
+                }
+            },
+            "public_charity_qualification": {
+                "country_of_operations": "US\/United States\/+1"
+            },
+            "foreign_entity_affidavit": {
+                "country_of_operations": "US\/United States\/+1"
+            },
+            "general_operating_funding": {
+                "has_amount_changed_from_last_year": true,
+                "amount": 15000,
+                "explanation": "<p>Imported from 2024 Grants.xlsx<\/p>"
+            },
+            "new_project_funding": {
+                "is_requesting": false
+            },
+            "funding": {
+                "general_operating_funding": 15000,
+                "project_funding": 0,
+                "total_funding": 15000,
+                "source": "Imported from 2024 Grants.xlsx"
+            }
+        },
+        "deleted_at": null,
+        "created_at": "2025-03-23T11:01:44.000000Z",
+        "updated_at": "2025-03-23T11:01:44.000000Z",
+        "applicant_id": "9e800a92-923b-4a1f-9053-7b98302e88d6",
+        "banking_credential_id": "9e800a92-945d-4013-ba5b-1eb560ca18cd",
+        "last_revision_id": null
+    }
+]

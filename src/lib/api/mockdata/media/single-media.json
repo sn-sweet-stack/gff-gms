@@ -1,0 +1,27 @@
+[
+    {
+        "id": "9e8014b3-31bf-46b0-af6a-27bc1ccb4692",
+        "model_type": "App\\Models\\Application",
+        "model_id": "9e800a92-9b21-48f8-b33e-9213948f769b",
+        "uuid": "7c1259be-46d4-4cb4-81a6-aabd405eeb62",
+        "collection_name": "application-documents",
+        "name": "GFF Public Charity Qualification",
+        "file_name": "G14-01-Public-Charity-Qualification-Cornerstones-Inc.xlsx",
+        "mime_type": "application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": 436123,
+        "manipulations": [],
+        "custom_properties": {
+            "type": "public_charity_qualification",
+            "google_drive_id": "Projects\/GFF Foundation\/Test Uploads\/Renewals\/2025\/G14-01 Cornerstones Inc\/Revision 2025-03-23 11-29-33\/G14-01-Public-Charity-Qualification-Cornerstones-Inc.xlsx"
+        },
+        "generated_conversions": [],
+        "responsive_images": [],
+        "order_column": 7,
+        "created_at": "2025-03-23T11:30:02.000000Z",
+        "updated_at": "2025-03-23T11:30:10.000000Z",
+        "original_url": "https:\/\/gff.sweetstack.local\/storage\/9e8014b3-31bf-46b0-af6a-27bc1ccb4692\/G14-01-Public-Charity-Qualification-Cornerstones-Inc.xlsx",
+        "preview_url": ""
+    }
+]

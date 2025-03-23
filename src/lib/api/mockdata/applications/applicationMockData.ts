@@ -33,6 +33,7 @@ const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
   data: { data: applications[0] as Application },
   // This handler will be called by the modified mockHttpClient
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0]
     const application = (applications as Application[]).find(app => app.id === id)
