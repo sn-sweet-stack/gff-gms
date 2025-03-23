@@ -10,17 +10,17 @@ function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
     .filter(rev => rev.application_id === applicationId)
     .map(rev => ({
       status: rev.application_row?.status || 'unknown',
-      author_name: rev.author_type === 'App\\Models\\Applicant' 
-        ? rev.application_row?.applicant?.name || 'Applicant'
+      author_name: rev.author_type === 'App\\Models\\Applicant'
+        ? rev.application_row?.payload?.applicant_info?.name || 'Applicant'
         : 'Staff Member',
       created_at: rev.created_at,
       notes: rev.status_notes
     }))
-    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 }
 
 // Helper function to enrich applications with applicant data and revision history
-function enrichApplicationsWithApplicantData(apps: Application[], includeRevisions = false): Application[] {
+function enrichApplications(apps: Application[], includeRevisions = false): Application[] {
   return apps.map(app => {
     const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
     return {
@@ -52,13 +52,13 @@ function filterApplications(params?: Record<string, string>): Application[] {
   }
 
   // Enrich with applicant data after filtering
-  return enrichApplicationsWithApplicantData(filteredApps);
+  return enrichApplications(filteredApps);
 }
 
 // GET /applications - Get all applications with optional filtering
 const getApplications: MockResponse<ApplicationsResponse> = {
   status: 200,
-  data: { data: enrichApplicationsWithApplicantData(applications as Application[]) },
+  data: { data: enrichApplications(applications as Application[]) },
   // This handler will be called by the modified mockHttpClient
   handler: (params?: Record<string, string>) => ({
     status: 200,
@@ -69,7 +69,7 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 // GET /applications/:id - Get a single application by ID
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
-  data: { data: enrichApplicationsWithApplicantData([applications[0] as Application], true)[0] },
+  data: { data: enrichApplications([applications[0] as Application], true)[0] },
   // This handler will be called by the modified mockHttpClient
   // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
@@ -78,7 +78,7 @@ const getApplicationById: MockResponse<ApplicationResponse> = {
 
     if (application) {
       // Enrich with applicant data and revision history
-      const enrichedApplication = enrichApplicationsWithApplicantData([application], true)[0];
+      const enrichedApplication = enrichApplications([application], true)[0];
       return {
         status: 200,
         data: { data: enrichedApplication }
