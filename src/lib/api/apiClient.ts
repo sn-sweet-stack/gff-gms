@@ -2,7 +2,8 @@ import { FetchHttpClient } from './httpClient'
 import type { HttpClient } from './httpClient'
 import { MockHttpClient } from './mockHttpClient'
 import { mockData } from './mockdata'
-import type { User, LoginRequest, LoginResponse, AppState } from './types'
+import type { User, LoginRequest, LoginResponse, AppState } from './mockdata/auth/types'
+import type { Application, ApplicationsResponse, ApplicationResponse } from './mockdata/applications/types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -44,12 +45,14 @@ export class ApiClient {
   }
 
   // Application methods
-  async getApplications(filters?: { status?: string; year?: string; type?: string }) {
-    return this.httpClient.get('/applications', { params: filters })
+  async getApplications(filters?: { status?: string; year?: string; type?: string }): Promise<Application[]> {
+    const response = await this.httpClient.get<ApplicationsResponse>('/applications', { params: filters })
+    return response.data
   }
 
-  async getApplicationById(id: string) {
-    return this.httpClient.get(`/applications/${id}`)
+  async getApplicationById(id: string): Promise<Application> {
+    const response = await this.httpClient.get<ApplicationResponse>(`/applications/${id}`)
+    return response.data
   }
 }
 
