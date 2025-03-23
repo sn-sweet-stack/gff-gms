@@ -5,6 +5,7 @@ import { mockData } from './mockdata'
 import type { User, LoginRequest, LoginResponse, AppState } from './mockdata/auth/types'
 import type { Application, ApplicationsResponse, ApplicationResponse } from './mockdata/applications/types'
 import type { Applicant, ApplicantsResponse, ApplicantResponse } from './mockdata/applicants/types'
+import type { Revision, RevisionsResponse, RevisionResponse } from './mockdata/revisions/types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -64,6 +65,22 @@ export class ApiClient {
 
   async getApplicantById(id: string): Promise<Applicant> {
     const response = await this.httpClient.get<ApplicantResponse>(`/applicants/${id}`)
+    return response.data
+  }
+
+  // Revision methods
+  async getRevisions(filters?: { application_id?: string; change_type?: string }): Promise<Revision[]> {
+    const response = await this.httpClient.get<RevisionsResponse>('/revisions', { params: filters })
+    return response.data
+  }
+
+  async getRevisionById(id: string): Promise<Revision> {
+    const response = await this.httpClient.get<RevisionResponse>(`/revisions/${id}`)
+    return response.data
+  }
+
+  async getApplicationRevisions(applicationId: string): Promise<Revision[]> {
+    const response = await this.httpClient.get<RevisionsResponse>(`/applications/${applicationId}/revisions`)
     return response.data
   }
 }
