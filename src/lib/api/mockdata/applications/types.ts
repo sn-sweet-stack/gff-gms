@@ -11,6 +11,11 @@ export interface Application {
   opening_at: string
   closing_at: string
   submitted_at: string | null
+  // Applicant data included in the application response
+  applicant?: {
+    gff_id: string
+    organization_name: string
+  }
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string
