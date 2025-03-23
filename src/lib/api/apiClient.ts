@@ -6,6 +6,7 @@ import type { User, LoginRequest, LoginResponse, AppState } from './mockdata/aut
 import type { Application, ApplicationsResponse, ApplicationResponse } from './mockdata/applications/types'
 import type { Applicant, ApplicantsResponse, ApplicantResponse } from './mockdata/applicants/types'
 import type { Revision, RevisionsResponse, RevisionResponse } from './mockdata/revisions/types'
+import type { BankingCredential, BankingCredentialsResponse, BankingCredentialResponse } from './mockdata/bankingCredentials/types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -81,6 +82,17 @@ export class ApiClient {
 
   async getApplicationRevisions(applicationId: string): Promise<Revision[]> {
     const response = await this.httpClient.get<RevisionsResponse>(`/applications/${applicationId}/revisions`)
+    return response.data
+  }
+
+  // Banking Credential methods
+  async getBankingCredentialById(id: string): Promise<BankingCredential> {
+    const response = await this.httpClient.get<BankingCredentialResponse>(`/banking-credentials/${id}`)
+    return response.data
+  }
+
+  async getApplicantBankingCredentials(applicantId: string): Promise<BankingCredential[]> {
+    const response = await this.httpClient.get<BankingCredentialsResponse>(`/applicants/${applicantId}/banking-credentials`)
     return response.data
   }
 }
