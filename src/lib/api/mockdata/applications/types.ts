@@ -6,7 +6,7 @@ export interface Application {
   type: ApplicationType
   year: string
   status: ApplicationStatus
-  application_enabled: number
+  application_enabled: boolean
   completing_person: string | null
   opening_at: string
   closing_at: string
