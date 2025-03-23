@@ -2,9 +2,11 @@ import applications from './applications.json'
 import applicants from '../applicants/applicants.json'
 import revisions from '../revisions/application_revisions.json'
 import bankingCredentials from '../bankingCredentials/banking_credentials.json'
+import mediaFiles from '../media/media.json'
 import type { MockResponse } from '../../types'
 import type { Application, ApplicationsResponse, ApplicationResponse, RevisionHistoryEntry } from './types'
 import type { BankingCredential } from '../bankingCredentials/types'
+import type { Media } from '../media/types'
 
 // Helper function to get simplified revision history for an application
 function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
@@ -21,12 +23,22 @@ function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
     .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 }
 
+// Helper function to get media files for an application
+function getApplicationMedia(applicationId: string): Media[] {
+  return (mediaFiles as unknown as Media[])
+    .filter(media => 
+      media.model_type === 'App\\Models\\Application' && 
+      media.model_id === applicationId
+    );
+}
+
 // Helper function to enrich a single application with full details
 function enrichApplication(app: Application): Application {
   const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
   const bankingCredential = (bankingCredentials as unknown as BankingCredential[]).find(
     bc => bc.id === app.banking_credential_id
   );
+  const mediaItems = getApplicationMedia(app.id);
 
   return {
     ...app,
@@ -35,7 +47,8 @@ function enrichApplication(app: Application): Application {
       organization_name: applicant.organization_name || ''
     } : undefined,
     revisions: getRevisionHistory(app.id),
-    banking_credential: bankingCredential
+    banking_credential: bankingCredential,
+    media: mediaItems.length > 0 ? mediaItems : undefined
   };
 }
 

@@ -36,6 +36,8 @@ export interface Application {
   revisions?: RevisionHistoryEntry[];
   // Banking credential associated with the application
   banking_credential?: BankingCredential;
+  // Media files attached to the application
+  media?: Media[];
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string
