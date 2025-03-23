@@ -1,5 +1,5 @@
 // API response and request types
-export type UserRole = 'admin' | 'staff' | 'board' | 'trustee' | 'assignee'
+export type UserRole = 'admin' | 'staff' | 'board' | 'trustee' | 'assignee' | 'cfo'
 
 export interface User {
   id: string
