@@ -7,6 +7,7 @@ import type { Application, ApplicationsResponse, ApplicationResponse } from './m
 import type { Applicant, ApplicantsResponse, ApplicantResponse } from './mockdata/applicants/types'
 import type { Revision, RevisionsResponse, RevisionResponse } from './mockdata/revisions/types'
 import type { BankingCredential, BankingCredentialsResponse, BankingCredentialResponse } from './mockdata/bankingCredentials/types'
+import type { Media, MediasResponse, MediaResponse } from './mockdata/media/types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -93,6 +94,22 @@ export class ApiClient {
 
   async getApplicantBankingCredentials(applicantId: string): Promise<BankingCredential[]> {
     const response = await this.httpClient.get<BankingCredentialsResponse>(`/applicants/${applicantId}/banking-credentials`)
+    return response.data
+  }
+
+  // Media methods
+  async getMedia(filters?: { model_type?: string; model_id?: string; collection_name?: string }): Promise<Media[]> {
+    const response = await this.httpClient.get<MediasResponse>('/media', { params: filters })
+    return response.data
+  }
+
+  async getMediaById(id: string): Promise<Media> {
+    const response = await this.httpClient.get<MediaResponse>(`/media/${id}`)
+    return response.data
+  }
+
+  async getApplicationMedia(applicationId: string): Promise<Media[]> {
+    const response = await this.httpClient.get<MediasResponse>(`/applications/${applicationId}/media`)
     return response.data
   }
 }
