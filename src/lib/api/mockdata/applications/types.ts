@@ -1,4 +1,5 @@
 import type { Address, Applicant } from "../applicants/types";
+import type { BankingCredential } from "../bankingCredentials/types";
 
 export type ApplicationStatus =
   "pending"
@@ -33,6 +34,8 @@ export interface Application {
   applicant?: Partial<Applicant>;
   // Revision history for the application
   revisions?: RevisionHistoryEntry[];
+  // Banking credential associated with the application
+  banking_credential?: BankingCredential;
   payload: {
     applicant_info?: {
       organization_phone_country_code?: string

@@ -1,8 +1,10 @@
 import applications from './applications.json'
 import applicants from '../applicants/applicants.json'
 import revisions from '../revisions/application_revisions.json'
+import bankingCredentials from '../bankingCredentials/banking_credentials.json'
 import type { MockResponse } from '../../types'
 import type { Application, ApplicationsResponse, ApplicationResponse, RevisionHistoryEntry } from './types'
+import type { BankingCredential } from '../bankingCredentials/types'
 
 // Helper function to get simplified revision history for an application
 function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
@@ -19,18 +21,25 @@ function getRevisionHistory(applicationId: string): RevisionHistoryEntry[] {
     .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 }
 
-// Helper function to enrich applications with applicant data and revision history
-function enrichApplications(apps: Application[], includeRevisions = false): Application[] {
+// Helper function to enrich applications with applicant data, banking credentials, and revision history
+function enrichApplications(apps: Application[], includeDetails = false): Application[] {
   return apps.map(app => {
     const applicant = (applicants as any[]).find(a => a.id === app.applicant_id);
+    const bankingCredential = includeDetails ? 
+      (bankingCredentials as unknown as BankingCredential[]).find(bc => bc.id === app.banking_credential_id) : 
+      undefined;
+    
     return {
       ...app,
       applicant: applicant ? {
         gff_id: applicant.gff_id || '',
         organization_name: applicant.organization_name || ''
       } : undefined,
-      // Only include revision history when requested (for single application view)
-      ...(includeRevisions ? { revision_history: getRevisionHistory(app.id) } : {})
+      // Only include additional details when requested (for single application view)
+      ...(includeDetails ? { 
+        revisions: getRevisionHistory(app.id),
+        banking_credential: bankingCredential
+      } : {})
     };
   });
 }
@@ -77,7 +86,7 @@ const getApplicationById: MockResponse<ApplicationResponse> = {
     const application = (applications as Application[]).find(app => app.id === id)
 
     if (application) {
-      // Enrich with applicant data and revision history
+      // Enrich with applicant data, banking credentials, and revision history
       const enrichedApplication = enrichApplications([application], true)[0];
       return {
         status: 200,
