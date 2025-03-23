@@ -4,6 +4,7 @@ import { MockHttpClient } from './mockHttpClient'
 import { mockData } from './mockdata'
 import type { User, LoginRequest, LoginResponse, AppState } from './mockdata/auth/types'
 import type { Application, ApplicationsResponse, ApplicationResponse } from './mockdata/applications/types'
+import type { Applicant, ApplicantsResponse, ApplicantResponse } from './mockdata/applicants/types'
 
 export class ApiClient {
   private httpClient: HttpClient
@@ -52,6 +53,17 @@ export class ApiClient {
 
   async getApplicationById(id: string): Promise<Application> {
     const response = await this.httpClient.get<ApplicationResponse>(`/applications/${id}`)
+    return response.data
+  }
+
+  // Applicant methods
+  async getApplicants(filters?: { gff_id?: string; organization_name?: string }): Promise<Applicant[]> {
+    const response = await this.httpClient.get<ApplicantsResponse>('/applicants', { params: filters })
+    return response.data
+  }
+
+  async getApplicantById(id: string): Promise<Applicant> {
+    const response = await this.httpClient.get<ApplicantResponse>(`/applicants/${id}`)
     return response.data
   }
 }
