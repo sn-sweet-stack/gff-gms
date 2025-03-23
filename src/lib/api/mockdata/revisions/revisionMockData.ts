@@ -1,12 +1,11 @@
 import revisions from './application_revisions.json'
-import singleRevision from './single-revision.json'
 import type { MockResponse } from '../../types'
 import type { Revision, RevisionsResponse, RevisionResponse } from './types'
 
 // Helper function to filter revisions based on query parameters
 function filterRevisions(params?: Record<string, string>): Revision[] {
   let filteredRevisions = revisions as unknown as Revision[];
-  
+
   if (params) {
     filteredRevisions = filteredRevisions.filter(revision => {
       // Filter by each parameter if it exists
@@ -17,7 +16,7 @@ function filterRevisions(params?: Record<string, string>): Revision[] {
       return true;
     });
   }
-  
+
   return filteredRevisions;
 }
 
@@ -35,8 +34,9 @@ const getRevisions: MockResponse<RevisionsResponse> = {
 // GET /revisions/:id - Get a single revision by ID
 const getRevisionById: MockResponse<RevisionResponse> = {
   status: 200,
-  data: { data: singleRevision[0] as unknown as Revision },
+  data: { data: revisions[0] as unknown as Revision },
   // This handler will be called by the modified mockHttpClient
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0];
     const revision = (revisions as unknown as Revision[]).find(rev => rev.id === id);
@@ -59,6 +59,7 @@ const getRevisionById: MockResponse<RevisionResponse> = {
 const getApplicationRevisions: MockResponse<RevisionsResponse> = {
   status: 200,
   data: { data: [] },
+  // @ts-ignore
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const applicationId = urlParams?.[0];
     const applicationRevisions = (revisions as unknown as Revision[]).filter(
