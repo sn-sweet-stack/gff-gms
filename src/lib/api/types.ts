@@ -1,5 +1,5 @@
 // Re-export auth types for backward compatibility
-export * from './auth/types'
+export * from './mockdata/auth/types'
 
 // Mock data types
 export interface MockResponse<T = any> {
