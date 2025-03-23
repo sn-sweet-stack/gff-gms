@@ -1,5 +1,5 @@
-export type ApplicationStatus = 'draft' | 'submitted' | 'under_review' | 'approved' | 'rejected'
-export type ApplicationType = 'grant' | 'loan' | 'scholarship'
+export type ApplicationStatus = 'draft' | 'submitted' | 'under_review' | 'approved' | 'rejected' | 'accepted'
+export type ApplicationType = 'renewal' | 'grant' | 'loan' | 'scholarship'
 
 export interface Application {
   id: string
