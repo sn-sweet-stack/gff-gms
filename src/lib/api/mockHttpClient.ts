@@ -85,6 +85,11 @@ export class MockHttpClient implements HttpClient {
         responseData = mockResponse
       }
 
+      // If no data property is present in the response, add a default empty object
+      if (!responseData.data) {
+        responseData.data = {}
+      }
+
       // Simulate network delay if specified
       if (responseData.delay) {
         await new Promise(resolve => setTimeout(resolve, responseData.delay))

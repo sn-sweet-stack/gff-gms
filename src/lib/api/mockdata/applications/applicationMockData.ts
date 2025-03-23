@@ -77,8 +77,7 @@ function filterApplications(params?: Record<string, string>): Application[] {
 // GET /applications - Get all applications with optional filtering
 const getApplications: MockResponse<ApplicationsResponse> = {
   status: 200,
-  data: { data: enrichApplicationsWithBasicInfo(applications as unknown as Application[]) },
-  // This handler will be called by the modified mockHttpClient
+  // Only need the handler for dynamic responses
   handler: (params?: Record<string, string>) => ({
     status: 200,
     data: { data: filterApplications(params) }
@@ -88,9 +87,7 @@ const getApplications: MockResponse<ApplicationsResponse> = {
 // GET /applications/:id - Get a single application by ID
 const getApplicationById: MockResponse<ApplicationResponse> = {
   status: 200,
-  data: { data: enrichApplication(applications[0] as unknown as Application) },
-  // This handler will be called by the modified mockHttpClient
-  // @ts-ignore
+  // Only need the handler for dynamic responses
   handler: (params?: Record<string, string>, urlParams?: string[]) => {
     const id = urlParams?.[0]
     const application = (applications as unknown as Application[]).find(app => app.id === id)
