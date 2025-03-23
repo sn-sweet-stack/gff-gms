@@ -43,6 +43,14 @@ export class ApiClient {
     return this.httpClient.get<AppState>('/appstate')
   }
 
+  // Application methods
+  async getApplications(filters?: { status?: string; year?: string; type?: string }) {
+    return this.httpClient.get('/applications', { params: filters })
+  }
+
+  async getApplicationById(id: string) {
+    return this.httpClient.get(`/applications/${id}`)
+  }
 }
 
 // Export a singleton instance
